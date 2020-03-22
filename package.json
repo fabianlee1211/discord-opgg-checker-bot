@@ -1,24 +1,63 @@
 {
   "name": "opggchecker",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --inspect index.js"
+    "start": "node dist/index.js",
+    "start:watch": "parcel src/index.ts --target node",
+    "build": "parcel build src/index.ts --out-dir dist --target node",
+    "others": "=================================================================",
+    "lint": "eslint src/**/*.{js,ts} --quiet",
+    "lint:fix": "eslint src/**/*.{js,ts} --fix",
+    "tsc": "tsc --noEmit --skipLibCheck",
+    "prettier": "prettier --check **/*.ts **/*.json"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/node": "^13.9.2",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
-    "nodemon": "^2.0.2"
+    "husky": "^4.2.3",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-run-server": "^1.1.2",
+    "parcel-plugin-static-files-copy": "^2.3.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "discord.js": "^12.0.2",
     "dotenv": "^8.2.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "winston": "^3.2.1"
   },
   "engines": {
-    "node": "12.16.1"
+    "node": "12.16.x"
+  },
+  "husky": {
+    "hooks": {
+      "post-merge": "yarn install --frozen-lockfile",
+      "post-rebase": "yarn install",
+      "pre-commit": "prettier **/*.ts --write && eslint src/**/*.ts --fix",
+      "pre-push": "yarn tsc && yarn lint"
+    }
+  },
+  "staticFiles": {
+    "staticPath": [
+      {
+        "staticPath": "src/storage/static",
+        "staticOutDir": "storage/static"
+      }
+    ],
+    "watcherGlob": "**"
   }
 }

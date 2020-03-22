@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["es6", "esnext", "es2015.promise"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "dist",
+    "isolatedModules": true,
+    "declaration": false,
+    "typeRoots": ["node_modules/@types"],
+    "baseUrl": "./src",
+    "esModuleInterop": true,
+    "paths": {
+      "~/*": ["*"],
+      "~models/*": ["models/*"],
+      "~storage/*": ["storage/*"],
+      "~typings/*": ["typings/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

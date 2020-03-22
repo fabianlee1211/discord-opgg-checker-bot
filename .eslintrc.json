@@ -1,21 +1,46 @@
 {
+  "parser": "@typescript-eslint/parser",
   "env": {
     "commonjs": true,
     "es6": true,
     "node": true
   },
-  "extends": ["airbnb-base", "prettier"],
+  "ignorePatterns": ["dist", "build"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 2015
   },
+  "plugins": ["@typescript-eslint/eslint-plugin"],
   "rules": {
     "no-console": "off",
     "consistent-return": "off",
     "linebreak-style": 0,
-    "no-else-return": 0
+    "no-else-return": 0,
+    "no-useless-return": 0,
+    "no-unused-vars": [0, { "varIgnorePattern": "_" }],
+    "no-restricted-syntax": 0,
+    "global-require": 0,
+    "import/no-dynamic-require": 0,
+    "import/prefer-default-export": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    // Typescript
+    "@typescript-eslint/no-explicit-any": 1,
+    "@typescript-eslint/interface-name-prefix": 0,
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ]
   }
 }
